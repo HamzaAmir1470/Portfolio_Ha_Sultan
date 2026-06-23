@@ -1,0 +1,164 @@
+import React from 'react';
+import { motion } from 'framer-motion';
+import { ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
+import { FaGithub } from 'react-icons/fa';
+
+// Import Swiper React components and styles
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Pagination, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
+const projects = [
+    {
+        title: "Sultan Shop Marketplace",
+        description: "End-to-end marketplace with role-based dashboards for buyers, sellers, and admins. Handles real-time order tracking, vendor onboarding, and Stripe payment flows.",
+        image: "https://media.licdn.com/dms/image/v2/D4D22AQGJHZ8i9OsHEQ/feedshare-shrink_1280/B4DZ6_3tAYIIAM-/0/1781335511421?e=1783555200&v=beta&t=obc7nKfgLyyIVGlWYuMW3p5XSxMPgHm4POiiA-ZwzHc",
+        tags: ["React", "Node.js", "MongoDB", "Stripe"],
+        liveLink: "https://sultanf.vercel.app/",
+        githubLink: "https://github.com/HamzaAmir1470/E-Shop-Multi_Vendor",
+    },
+    {
+        title: "CSV Export Utility",
+        description: "Open source contribution — built a shared downloadCsv.ts utility and backend ExcelJS implementation across multiple repos, improving data export reliability.",
+        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
+        tags: ["TypeScript", "ExcelJS", "Node.js"],
+        liveLink: "#",
+        githubLink: "https://github.com/HamzaAmir1470/csv-utility",
+    },
+    {
+        title: "SSR/SSG Hybrid Blog",
+        description: "High-performance blog with MDX rendering, full-text search, and automatic reading-time estimation. Built for optimal SEO and developer experience.",
+        image: "https://images.unsplash.com/photo-1516542076542-c2f2b813f3e2?q=80&w=2070&auto=format&fit=crop",
+        tags: ["Next.js", "Tailwind", "MDX"],
+        liveLink: "https://my-nextjs-blog.vercel.app",
+        githubLink: "https://github.com/HamzaAmir1470/nextjs-mdx-blog",
+    },
+    // Added a 4th dummy project so you can see the slider in action immediately
+    {
+        title: "Cloud-Native E-Commerce",
+        description: "Scalable e-commerce platform deployed on AWS EC2 with S3 for media storage, utilizing serverless functions for order processing and notifications.",
+        image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop",
+        tags: ["AWS", "Lambda", "React"],
+        liveLink: "https://cloud-store-demo.vercel.app",
+        githubLink: "https://github.com/HamzaAmir1470/cloud-ecommerce",
+    }
+];
+
+const Projects = () => {
+    return (
+        <section id="work" className="py-24 px-6 max-w-6xl mx-auto border-t border-white/5 overflow-hidden">
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+                className="mb-12"
+            >
+                <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-widest mb-2">Selected Work</h2>
+                <h3 className="text-3xl font-bold text-white">Featured Projects</h3>
+            </motion.div>
+
+            {/* Slider Container */}
+            <div className="relative px-4 md:px-10 pb-12">
+                <Swiper
+                    modules={[Navigation, Pagination, Autoplay]}
+                    spaceBetween={24}
+                    slidesPerView={1}
+                    breakpoints={{
+                        768: { slidesPerView: 2 },
+                        1024: { slidesPerView: 3 }
+                    }}
+                    navigation={{
+                        nextEl: '.swiper-button-next-custom',
+                        prevEl: '.swiper-button-prev-custom',
+                    }}
+                    pagination={{
+                        clickable: true,
+                        dynamicBullets: true,
+                    }}
+                    autoplay={{
+                        delay: 5000,
+                        disableOnInteraction: true
+                    }}
+                    loop={projects.length > 3}
+                    className="projects-swiper"
+                >
+                    {projects.map((project, index) => (
+                        <SwiperSlide key={index} className="h-auto">
+                            {({ isActive }) => (
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ duration: 0.5 }}
+                                    whileHover={{ y: -8, transition: { duration: 0.2 } }}
+                                    className={`bg-[#151515] rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col h-full ${isActive ? 'border-white/20 shadow-xl' : 'border-white/5'
+                                        }`}
+                                >
+                                    {/* Image Container */}
+                                    <div className="h-48 overflow-hidden relative">
+                                        <img
+                                            src={project.image}
+                                            alt={project.title}
+                                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-[#151515] to-transparent opacity-60"></div>
+                                    </div>
+
+                                    {/* Content */}
+                                    <div className="p-6 flex flex-col flex-grow">
+                                        <div className="flex flex-wrap gap-2 mb-3">
+                                            {project.tags.slice(0, 3).map(tag => (
+                                                <span key={tag} className="text-[10px] font-medium bg-white/5 text-gray-300 px-2.5 py-1 rounded-full border border-white/5">
+                                                    {tag}
+                                                </span>
+                                            ))}
+                                        </div>
+                                        <h4 className="text-white font-semibold text-lg mb-2">{project.title}</h4>
+                                        <p className="text-gray-400 text-sm leading-relaxed mb-6 flex-grow">
+                                            {project.description}
+                                        </p>
+
+                                        {/* Action Links */}
+                                        <div className="flex items-center gap-4 pt-4 border-t border-white/5 mt-auto">
+                                            <a
+                                                href={project.liveLink}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex items-center gap-1.5 text-xs font-medium text-blue-400 hover:text-blue-300 transition-colors"
+                                            >
+                                                <ExternalLink className="w-3.5 h-3.5" /> Live Demo
+                                            </a>
+                                            <a
+                                                href={project.githubLink}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="flex items-center gap-1.5 text-xs font-medium text-gray-400 hover:text-white transition-colors"
+                                            >
+                                                <FaGithub className="w-3.5 h-3.5" /> Source Code
+                                            </a>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            )}
+                        </SwiperSlide>
+                    ))}
+                </Swiper>
+
+                {/* Custom Navigation Buttons */}
+                <div className="flex justify-center items-center gap-4 mt-8">
+                    <button className="swiper-button-prev-custom w-10 h-10 rounded-full border border-white/10 bg-[#1c1c1c] text-white hover:bg-[#2a2a2a] transition-colors flex items-center justify-center cursor-pointer">
+                        <ChevronLeft className="w-5 h-5" />
+                    </button>
+                    <button className="swiper-button-next-custom w-10 h-10 rounded-full border border-white/10 bg-[#1c1c1c] text-white hover:bg-[#2a2a2a] transition-colors flex items-center justify-center cursor-pointer">
+                        <ChevronRight className="w-5 h-5" />
+                    </button>
+                </div>
+            </div>
+        </section>
+    );
+};
+
+export default Projects;
