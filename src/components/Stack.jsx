@@ -63,18 +63,6 @@ const techStacks = [
         name: 'AWS',
         icon: <Cloud className="w-8 h-8 mb-3 text-[#FF9900]" />, // Classic AWS Orange
         label: 'Cloud Infrastructure'
-    },
-    {
-        name: 'Tailwind CSS',
-        icon: (
-            <svg className="w-8 h-8 mb-3" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M2 4C2 4 5.5 2 10 2C14.5 2 18 4 18 4C18 4 15.5 6 10 6C4.5 6 2 4 2 4Z" fill="#38BDF8" />
-                <path d="M2 12C2 12 5.5 10 10 10C14.5 10 18 12 18 12C18 12 15.5 14 10 14C4.5 14 2 12 2 12Z" fill="#38BDF8" />
-                <path d="M2 20C2 20 5.5 18 10 18C14.5 18 18 20 18 20C18 20 15.5 22 10
-    22C4.5 22 2 20 2 20Z" fill="#38BDF8" />
-            </svg>
-        ),
-        label: 'CSS Framework'
     }
 ];
 

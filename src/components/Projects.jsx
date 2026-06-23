@@ -2,13 +2,14 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa';
-
-// Import Swiper React components and styles
+import aes from '../assets/aes.png';
+import currency from '../assets/currency.png';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Pagination, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import resume from '../assets/resume.png';
 
 const projects = [
     {
@@ -20,29 +21,29 @@ const projects = [
         githubLink: "https://github.com/HamzaAmir1470/E-Shop-Multi_Vendor",
     },
     {
-        title: "CSV Export Utility",
-        description: "Open source contribution — built a shared downloadCsv.ts utility and backend ExcelJS implementation across multiple repos, improving data export reliability.",
-        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2070&auto=format&fit=crop",
-        tags: ["TypeScript", "ExcelJS", "Node.js"],
-        liveLink: "#",
-        githubLink: "https://github.com/HamzaAmir1470/csv-utility",
+        title: "Amir Electric Store",
+        description: "A modern e-commerce platform for selling electrical products with a focus on user experience and performance.",
+        image: aes,
+        tags: ["React", "ExcelJS", "Node.js"],
+        liveLink: "https://aesfrontend.vercel.app/",
+        githubLink: "https://github.com/HamzaAmir1470/Amir-Electric-Store",
     },
     {
-        title: "SSR/SSG Hybrid Blog",
-        description: "High-performance blog with MDX rendering, full-text search, and automatic reading-time estimation. Built for optimal SEO and developer experience.",
-        image: "https://images.unsplash.com/photo-1516542076542-c2f2b813f3e2?q=80&w=2070&auto=format&fit=crop",
-        tags: ["Next.js", "Tailwind", "MDX"],
-        liveLink: "https://my-nextjs-blog.vercel.app",
-        githubLink: "https://github.com/HamzaAmir1470/nextjs-mdx-blog",
+        title: "Currency Converter App",
+        description: "A simple yet effective currency converter app with real-time exchange rates and a clean, intuitive interface.",
+        image: currency,
+        tags: ["React", "API Integration"],
+        liveLink: "https://currency-converter-delta-umber.vercel.app/",
+        githubLink: "https://github.com/HamzaAmir1470/currencyConverter",
     },
     // Added a 4th dummy project so you can see the slider in action immediately
     {
-        title: "Cloud-Native E-Commerce",
+        title: "Resume Builder",
         description: "Scalable e-commerce platform deployed on AWS EC2 with S3 for media storage, utilizing serverless functions for order processing and notifications.",
-        image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=2070&auto=format&fit=crop",
-        tags: ["AWS", "Lambda", "React"],
-        liveLink: "https://cloud-store-demo.vercel.app",
-        githubLink: "https://github.com/HamzaAmir1470/cloud-ecommerce",
+        image: resume,
+        tags: ["Vercel", "AI", "React"],
+        liveLink: "https://resume-builder-8kdk.vercel.app/",
+        githubLink: "https://github.com/HamzaAmir1470/Resume_Builder",
     }
 ];
 
