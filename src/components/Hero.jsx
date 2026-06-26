@@ -1,9 +1,10 @@
 import { motion } from 'framer-motion';
 import profileImage from '../assets/profile.jpeg';
-
+import { useState } from 'react';
 
 const Hero = ({ sectionRefs }) => {
     const [copied, setCopied] = useState(false);
+
     const techStack = ['React', 'Node.js', 'MongoDB', 'Express', 'TypeScript', 'Next.js', 'REST APIs'];
 
     const containerVariants = {
@@ -30,12 +31,27 @@ const Hero = ({ sectionRefs }) => {
         }
     };
 
+    // Handle email click - copy to clipboard
+    const handleEmailClick = (e) => {
+        e.preventDefault();
+        const email = 'hamzaamir9733@gmail.com'; // Replace with your actual email
+        
+        navigator.clipboard.writeText(email).then(() => {
+            setCopied(true);
+            setTimeout(() => setCopied(false), 2000);
+        }).catch(() => {
+            // Fallback - open email client
+            window.location.href = `mailto:${email}`;
+        });
+    };
+
     return (
         <section id="hero" className="relative min-h-screen flex items-center py-20 px-6 bg-[#0f0f0f] text-white overflow-hidden">
+            {/* Background gradient effect */}
+            <div className="absolute inset-0 bg-gradient-to-br from-[#5b6bf0]/5 via-transparent to-transparent pointer-events-none"></div>
+            
             <div className="max-w-6xl mx-auto w-full relative z-10">
-
                 <div className="flex flex-col-reverse lg:flex-row items-center gap-8 lg:gap-16">
-
                     {/* Left Content */}
                     <div className="flex-1 text-center lg:text-left">
                         {/* Label */}
@@ -45,7 +61,7 @@ const Hero = ({ sectionRefs }) => {
                             transition={{ duration: 0.6 }}
                             className="mb-4"
                         >
-                            <span className="text-[#5b6bf0] font-medium text-sm tracking-widest uppercase inline-block">
+                            <span className="text-[#5b6bf0] font-medium text-sm tracking-widest uppercase inline-block border border-[#5b6bf0]/20 px-4 py-1.5 rounded-full bg-[#5b6bf0]/5">
                                 MERN Stack Developer
                             </span>
                         </motion.div>
@@ -71,7 +87,7 @@ const Hero = ({ sectionRefs }) => {
                             I write production-grade React, Node.js, and MongoDB code — from responsive UIs to REST APIs — and contribute to open source between client projects.
                         </motion.p>
 
-                        {/* Buttons Row (Using native smooth scroll) */}
+                        {/* Buttons Row */}
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -80,9 +96,8 @@ const Hero = ({ sectionRefs }) => {
                         >
                             <button
                                 onClick={() => handleScrollToSection('work')}
-                                className="flex items-center gap-2.5 px-6 py-3 bg-[#5b6bf0] text-white text-sm font-medium rounded-lg hover:bg-[#4a5be0] transition-all border border-[#5b6bf0] cursor-pointer"
+                                className="flex items-center gap-2.5 px-6 py-3 bg-[#5b6bf0] text-white text-sm font-medium rounded-lg hover:bg-[#4a5be0] transition-all border border-[#5b6bf0] cursor-pointer shadow-lg shadow-[#5b6bf0]/25 hover:shadow-[#5b6bf0]/40 hover:-translate-y-0.5"
                             >
-                                {/* Grid Icon */}
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                     <rect x="3" y="3" width="7" height="7" />
                                     <rect x="14" y="3" width="7" height="7" />
@@ -94,10 +109,9 @@ const Hero = ({ sectionRefs }) => {
 
                             <button
                                 onClick={() => handleScrollToSection('open-source')}
-                                className="flex items-center gap-2.5 px-6 py-3 bg-transparent border border-white/20 text-gray-300 text-sm font-medium rounded-lg hover:text-white hover:border-white/50 transition-all cursor-pointer"
+                                className="flex items-center gap-2.5 px-6 py-3 bg-transparent border border-white/20 text-gray-300 text-sm font-medium rounded-lg hover:text-white hover:border-white/50 transition-all cursor-pointer hover:bg-white/5 hover:-translate-y-0.5"
                             >
                                 Open source work
-                                {/* Arrow Up Right Icon */}
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                                     <line x1="7" y1="17" x2="17" y2="7" />
                                     <polyline points="7 7 17 7 17 17" />
@@ -106,7 +120,8 @@ const Hero = ({ sectionRefs }) => {
                         </motion.div>
 
                         {/* Tech Stack Row */}
-                        <motion.div variants={containerVariants}
+                        <motion.div 
+                            variants={containerVariants}
                             initial="hidden"
                             animate="visible"
                             className="flex flex-wrap gap-3 justify-center lg:justify-start"
@@ -116,10 +131,11 @@ const Hero = ({ sectionRefs }) => {
                                     key={tech}
                                     variants={itemVariants}
                                     whileHover={{ scale: 1.05, y: -2 }}
-                                    className={`px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium border transition-all ${index < 4
-                                        ? 'bg-white text-[#5b6bf0] border-white hover:bg-gray-100'
-                                        : 'bg-transparent text-gray-400 border-[#2a2a2a] hover:border-gray-500 hover:text-white'
-                                        }`}
+                                    className={`px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium border transition-all ${
+                                        index < 4
+                                            ? 'bg-white text-[#5b6bf0] border-white hover:bg-gray-100'
+                                            : 'bg-transparent text-gray-400 border-[#2a2a2a] hover:border-gray-500 hover:text-white'
+                                    }`}
                                 >
                                     {tech}
                                 </motion.div>
@@ -143,6 +159,9 @@ const Hero = ({ sectionRefs }) => {
                             />
                             {/* Glowing ring effect */}
                             <div className="absolute inset-0 rounded-full ring-2 ring-[#5b6bf0]/50 ring-offset-2 ring-offset-[#0f0f0f]"></div>
+                            
+                            {/* Animated pulse ring */}
+                            <div className="absolute inset-[-8px] rounded-full border-2 border-[#5b6bf0]/20 animate-ping"></div>
                         </div>
 
                         {/* Social Links Under Image */}
@@ -152,7 +171,7 @@ const Hero = ({ sectionRefs }) => {
                                 href="https://github.com/HamzaAmir1470"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-gray-400 hover:text-[#5b6bf0] transition-colors duration-300"
+                                className="text-gray-400 hover:text-[#5b6bf0] transition-colors duration-300 hover:scale-110 transform"
                                 aria-label="GitHub"
                             >
                                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -165,7 +184,7 @@ const Hero = ({ sectionRefs }) => {
                                 href="https://www.linkedin.com/in/hamza-amir9733"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-gray-400 hover:text-[#5b6bf0] transition-colors duration-300"
+                                className="text-gray-400 hover:text-[#5b6bf0] transition-colors duration-300 hover:scale-110 transform"
                                 aria-label="LinkedIn"
                             >
                                 <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
@@ -173,31 +192,33 @@ const Hero = ({ sectionRefs }) => {
                                 </svg>
                             </a>
 
-                            {/* Email */}
-                            <div className="relative group">
-                                <a
-                                    href="mailto:your.email@example.com"
+                            {/* Email - Copy to clipboard */}
+                            <div className="relative group mt-2">
+                                <button
                                     onClick={handleEmailClick}
-                                    className="text-gray-400 hover:text-[#5b6bf0] transition-colors duration-300"
-                                    aria-label="Email"
+                                    className="text-gray-400 hover:text-[#5b6bf0] transition-colors duration-300 hover:scale-110 transform"
+                                    aria-label="Copy email to clipboard"
                                 >
-                                    <svg className="w-6.5 h-6.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l7.89 5.26a2 2 0 002.22 0L22 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                                     </svg>
-                                </a>
+                                </button>
 
-                                {/* Tooltip or Toast notification */}
+                                {/* Tooltip notification */}
                                 {copied && (
-                                    <span className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-2 py-1 text-xs text-white bg-black/80 rounded whitespace-nowrap">
-                                        Email copied to clipboard!
-                                    </span>
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: 10 }}
+                                        className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-1.5 text-xs text-white bg-[#5b6bf0] rounded-lg whitespace-nowrap shadow-lg"
+                                    >
+                                        Email copied! 📋
+                                    </motion.div>
                                 )}
                             </div>
                         </div>
                     </motion.div>
-
                 </div>
-
             </div>
         </section>
     );
