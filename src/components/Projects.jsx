@@ -1,4 +1,3 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import { ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa';
@@ -36,7 +35,6 @@ const projects = [
         liveLink: "https://currency-converter-delta-umber.vercel.app/",
         githubLink: "https://github.com/HamzaAmir1470/currencyConverter",
     },
-    // Added a 4th dummy project so you can see the slider in action immediately
     {
         title: "Resume Builder",
         description: "Scalable e-commerce platform deployed on AWS EC2 with S3 for media storage, utilizing serverless functions for order processing and notifications.",
@@ -98,14 +96,19 @@ const Projects = () => {
                                     className={`bg-[#151515] rounded-2xl overflow-hidden border transition-all duration-300 flex flex-col h-full ${isActive ? 'border-white/20 shadow-xl' : 'border-white/5'
                                         }`}
                                 >
-                                    {/* Image Container */}
-                                    <div className="h-48 overflow-hidden relative">
+                                    {/* Image Container - Bright and vibrant without shadow */}
+                                    <div className="h-48 overflow-hidden relative bg-[#0a0a0a]">
                                         <img
                                             src={project.image}
                                             alt={project.title}
-                                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 brightness-100"
+                                            style={{
+                                                filter: 'brightness(1) contrast(1.05) saturate(1.1)',
+                                                boxShadow: 'none'
+                                            }}
                                         />
-                                        <div className="absolute inset-0 bg-gradient-to-t from-[#151515] to-transparent opacity-60"></div>
+                                        {/* Subtle gradient overlay for text readability only - no dark shadow */}
+                                        <div className="absolute inset-0 bg-gradient-to-t from-[#151515]/40 via-transparent to-transparent pointer-events-none"></div>
                                     </div>
 
                                     {/* Content */}

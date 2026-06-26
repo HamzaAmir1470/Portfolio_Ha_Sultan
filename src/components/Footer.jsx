@@ -1,5 +1,3 @@
-import React from 'react';
-import { motion } from 'framer-motion';
 import { Mail } from 'lucide-react';
 import { FaTwitter, FaLinkedin, FaGithub } from 'react-icons/fa';
 
@@ -38,7 +36,7 @@ const Footer = ({ sectionRefs }) => {
                             Navigation
                         </h4>
                         <ul className="space-y-2.5">
-                            {['About', 'Work', 'Stack', 'Open-Source'].map((item) => {
+                            {['About', 'Work', 'Stack', 'Open-Source', 'Articles'].map((item) => {
                                 const key = item.toLowerCase().replace(' ', '-');
                                 return (
                                     <li key={item}>
