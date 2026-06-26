@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import profileImage from '../assets/profile.jpeg';
 
@@ -31,7 +31,7 @@ const Hero = ({ sectionRefs }) => {
         }
     };
 
-    const handleEmailClick = (e) => {
+    const handleEmailClick = () => {
         navigator.clipboard.writeText("your.email@example.com");
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
